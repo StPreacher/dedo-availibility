@@ -64,50 +64,9 @@
       font-family: 'Nunito', sans-serif;
     }
 
-    /* Staggered card animation */
+    /* Cards are visible by default; animation added via JS inline style */
     .session-card {
-      opacity: 0;
-      animation: fadeInUp 0.5s ease forwards;
-    }
-
-    .session-card:nth-child(1) {
-      animation-delay: 0.05s;
-    }
-
-    .session-card:nth-child(2) {
-      animation-delay: 0.10s;
-    }
-
-    .session-card:nth-child(3) {
-      animation-delay: 0.15s;
-    }
-
-    .session-card:nth-child(4) {
-      animation-delay: 0.20s;
-    }
-
-    .session-card:nth-child(5) {
-      animation-delay: 0.25s;
-    }
-
-    .session-card:nth-child(6) {
-      animation-delay: 0.30s;
-    }
-
-    .session-card:nth-child(7) {
-      animation-delay: 0.35s;
-    }
-
-    .session-card:nth-child(8) {
-      animation-delay: 0.40s;
-    }
-
-    .session-card:nth-child(9) {
-      animation-delay: 0.45s;
-    }
-
-    .session-card:nth-child(10) {
-      animation-delay: 0.50s;
+      animation: fadeInUp 0.4s ease both;
     }
 
     /* Dolu kartlar soluklaşır */
@@ -339,6 +298,7 @@
 
       showStatus("none");
 
+      var cardIndex = 0;
       data.forEach(function (row) {
         var tarih = (row["Tarih"] || "").trim();
         var saat = (row["Saat"] || "").trim();
@@ -352,8 +312,10 @@
         var isDolu = kalanInt === 0;
         var cardClass = isDolu ? "card-dolu" : "";
         var stripColor = isDolu ? "bg-gray-300" : (kalanInt <= 4 ? "bg-red-400" : "bg-green-400");
+        var delay = (cardIndex * 0.07).toFixed(2);
+        cardIndex++;
 
-        var card = '<div class="session-card ' + cardClass + ' bg-white rounded-2xl shadow-sm border border-amber-100 p-4 relative overflow-hidden">' +
+        var card = '<div class="session-card ' + cardClass + ' bg-white rounded-2xl shadow-sm border border-amber-100 p-4 relative overflow-hidden" style="animation-delay:' + delay + 's">' +
           '<div class="absolute left-0 top-0 bottom-0 w-1.5 rounded-l-2xl ' + stripColor + '"></div>' +
           '<div class="pl-2">' +
           '<div class="flex items-start justify-between gap-2">' +
