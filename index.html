@@ -270,6 +270,9 @@
       const kp = parseInt(kapasite, 10);
       if (isNaN(k) || isNaN(kp) || kp === 0) return "";
 
+      // Doluluk %50'nin altındaysa barı gösterme (negatif sosyal kanıt önleme)
+      if (k > kp / 2) return "";
+
       const dolu = kp - k;
       const pct = Math.round((dolu / kp) * 100);
 
