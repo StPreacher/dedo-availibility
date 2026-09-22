@@ -379,23 +379,31 @@
         return;
       }
 
+      // fetch() ile çek, ardından PapaParse ile metin olarak ayrıştır
+      // (PapaParse download:true Google Sheets redirect'ini bazen atlıyor)
       var url = SHEET_CSV_URL + (SHEET_CSV_URL.indexOf("?") !== -1 ? "&" : "?") + "_t=" + Date.now();
 
-      Papa.parse(url, {
-        download: true,
-        header: true,
-        skipEmptyLines: true,
-        complete: function (results) {
+      fetch(url)
+        .then(function (response) {
+          if (!response.ok) {
+            throw new Error("HTTP " + response.status);
+          }
+          return response.text();
+        })
+        .then(function (csvText) {
+          var results = Papa.parse(csvText, {
+            header: true,
+            skipEmptyLines: true
+          });
           if (results.errors && results.errors.length > 0) {
             console.warn("PapaParse uyarıları:", results.errors);
           }
           renderCards(results.data);
-        },
-        error: function (err) {
+        })
+        .catch(function (err) {
           console.error("CSV çekme hatası:", err);
           showError();
-        }
-      });
+        });
     }
 
     // İlk yükleme
