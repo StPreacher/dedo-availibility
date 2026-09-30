@@ -148,12 +148,6 @@
       box-shadow: 0 10px 32px rgba(37, 211, 102, 0.6);
     }
 
-    .wa-sticky.hidden-sticky {
-      opacity: 0;
-      pointer-events: none;
-      transform: translateY(12px);
-    }
-
     @keyframes waPop {
       0%   { opacity: 0; transform: translateY(20px) scale(0.85); }
       100% { opacity: 1; transform: translateY(0) scale(1); }
@@ -781,24 +775,6 @@
       startAuto();
     })();
 
-    // ================================================================
-    // STICKY WA – Ana buton görünürken gizle
-    // ================================================================
-    (function () {
-      var stickyBtn = document.getElementById('wa-sticky');
-      var mainBtn   = document.getElementById('wa-button');
-      if (!stickyBtn || !mainBtn) return;
-
-      function updateSticky() {
-        var rect = mainBtn.getBoundingClientRect();
-        var inView = rect.top < window.innerHeight && rect.bottom > 0;
-        stickyBtn.classList.toggle('hidden-sticky', inView);
-      }
-
-      window.addEventListener('scroll', updateSticky, { passive: true });
-      // Kısa gecikmeyle ilk kontrol — kartlar yüklenince pozisyon netleşir
-      setTimeout(updateSticky, 800);
-    })();
   </script>
 
 </body>
