@@ -13,6 +13,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
 
+  <!-- Vercel Analytics -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
+
   <!-- PapaParse (CSV parser) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 
@@ -774,6 +780,16 @@
       goTo(0);
       startAuto();
     })();
+
+    // ================================================================
+    // ANALYTICS – WhatsApp buton tiklama olaylari
+    // ================================================================
+    document.getElementById('wa-button').addEventListener('click', function () {
+      window.va && window.va('event', { name: 'whatsapp_click', data: { source: 'main_cta' } });
+    });
+    document.getElementById('wa-sticky').addEventListener('click', function () {
+      window.va && window.va('event', { name: 'whatsapp_click', data: { source: 'sticky_button' } });
+    });
 
   </script>
 
