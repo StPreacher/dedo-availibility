@@ -119,6 +119,109 @@
       background: #FFD166;
       border-radius: 10px;
     }
+
+    /* ===== TESTIMONIALS SLIDER ===== */
+    .testimonials-section {
+      background: linear-gradient(160deg, #FFF3E0 0%, #FFF8F0 100%);
+      border-top: 1px solid #FFE0B2;
+      border-bottom: 1px solid #FFE0B2;
+    }
+
+    .slider-track {
+      display: flex;
+      transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
+
+    .testimonial-card {
+      min-width: 100%;
+      padding: 0 4px;
+      box-sizing: border-box;
+    }
+
+    .testimonial-inner {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 4px 24px rgba(255, 180, 71, 0.12), 0 1px 4px rgba(0,0,0,0.04);
+      border: 1px solid #FFE8C0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonial-inner::before {
+      content: '\201C';
+      position: absolute;
+      top: -10px;
+      right: 16px;
+      font-size: 80px;
+      color: #FFD166;
+      opacity: 0.35;
+      font-family: Georgia, serif;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .stars span {
+      color: #FFD166;
+      font-size: 16px;
+      text-shadow: 0 1px 3px rgba(255, 209, 102, 0.4);
+    }
+
+    .avatar-circle {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+      border: 2.5px solid #FFD166;
+    }
+
+    .dot-nav button {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: none;
+      background: #FFD166;
+      opacity: 0.35;
+      cursor: pointer;
+      padding: 0;
+      transition: opacity 0.25s, transform 0.25s;
+    }
+
+    .dot-nav button.active {
+      opacity: 1;
+      transform: scale(1.35);
+      background: #FF8C42;
+    }
+
+    .slider-arrow {
+      background: #ffffff;
+      border: 1.5px solid #FFE0B2;
+      border-radius: 50%;
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(255, 180, 71, 0.15);
+    }
+
+    .slider-arrow:hover {
+      background: #FFD166;
+      box-shadow: 0 4px 12px rgba(255, 180, 71, 0.3);
+    }
+
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-16px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
   </style>
 </head>
 
@@ -198,6 +301,145 @@
   <main class="max-w-lg mx-auto px-4 py-4 space-y-3" id="cards-container">
   </main>
 
+
+  <!-- ===================== VELİ YORUMLARI ===================== -->
+  <section class="testimonials-section py-7 mt-2" aria-label="Veli yorumları">
+    <div class="max-w-lg mx-auto px-4">
+
+      <!-- Başlık -->
+      <div class="text-center mb-5">
+        <p class="text-xs font-black text-amber-400 uppercase tracking-widest mb-1">Velilerimiz Ne Diyor?</p>
+        <h2 class="text-xl font-black text-amber-800">💬 Gerçek Deneyimler</h2>
+      </div>
+
+      <!-- Slider wrapper -->
+      <div class="relative">
+        <!-- Oklar + Viewport -->
+        <div class="flex items-center gap-2">
+          <button id="t-prev" class="slider-arrow" aria-label="Önceki yorum">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-amber-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+
+          <div class="overflow-hidden flex-1" id="t-viewport">
+            <div class="slider-track" id="t-track">
+
+              <!-- Yorum 1 -->
+              <div class="testimonial-card" role="group" aria-label="Yorum 1 / 5">
+                <div class="testimonial-inner">
+                  <div class="stars mb-2" aria-label="5 yıldız">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                  </div>
+                  <p class="text-sm font-semibold text-gray-700 leading-relaxed mb-4">
+                    "Kızım cumartesi sabahları çantasını görünce zıplamaya başlıyor, başka bir şey demesine gerek kalmıyor 😄 Parmak boyası, hamur oyunları… 18 aylık bir bebek için bu kadar güzel bir ortam bulamazdık!"
+                  </p>
+                  <div class="flex items-center gap-3">
+                    <div class="avatar-circle bg-pink-50">👩</div>
+                    <div>
+                      <p class="text-sm font-black text-gray-800">Selin A.</p>
+                      <p class="text-xs text-amber-500 font-bold">18 aylık kız çocuğu annesi</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Yorum 2 -->
+              <div class="testimonial-card" role="group" aria-label="Yorum 2 / 5">
+                <div class="testimonial-inner">
+                  <div class="stars mb-2" aria-label="5 yıldız">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                  </div>
+                  <p class="text-sm font-semibold text-gray-700 leading-relaxed mb-4">
+                    "Oğlum 22 aylıkken başladı; Melike Hanım'ın sabırlı ve şefkatli yaklaşımı sayesinde duyusal materyallerle çok güzel zaman geçiriyor. İnce motor becerileri inanılmaz gelişti!"
+                  </p>
+                  <div class="flex items-center gap-3">
+                    <div class="avatar-circle bg-blue-50">👨</div>
+                    <div>
+                      <p class="text-sm font-black text-gray-800">Murat T.</p>
+                      <p class="text-xs text-amber-500 font-bold">22 aylık erkek çocuğu babası</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Yorum 3 -->
+              <div class="testimonial-card" role="group" aria-label="Yorum 3 / 5">
+                <div class="testimonial-inner">
+                  <div class="stars mb-2" aria-label="5 yıldız">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                  </div>
+                  <p class="text-sm font-semibold text-gray-700 leading-relaxed mb-4">
+                    "Kontenjanların ne kadar hızlı dolduğunu görünce anladım: bu kadar küçük yaş grubuna özel, bu kadar kaliteli bir atölye çok nadir! Bu site olmasa yerimizi kaçırırdık."
+                  </p>
+                  <div class="flex items-center gap-3">
+                    <div class="avatar-circle bg-purple-50">👩</div>
+                    <div>
+                      <p class="text-sm font-black text-gray-800">Derya K.</p>
+                      <p class="text-xs text-amber-500 font-bold">28 aylık kız çocuğu annesi</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Yorum 4 -->
+              <div class="testimonial-card" role="group" aria-label="Yorum 4 / 5">
+                <div class="testimonial-inner">
+                  <div class="stars mb-2" aria-label="5 yıldız">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                  </div>
+                  <p class="text-sm font-semibold text-gray-700 leading-relaxed mb-4">
+                    "İki çocuğumu ayrı gruplara getiriyorum; 17 aylık ve 32 aylık. Melike Hanım her yaş grubuna ayrı dikkat gösteriyor, her seans farklı bir aktivite — asla sıkılmıyorlar!"
+                  </p>
+                  <div class="flex items-center gap-3">
+                    <div class="avatar-circle bg-green-50">👩</div>
+                    <div>
+                      <p class="text-sm font-black text-gray-800">Funda B.</p>
+                      <p class="text-xs text-amber-500 font-bold">17 & 32 aylık çocukları olan anne</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Yorum 5 -->
+              <div class="testimonial-card" role="group" aria-label="Yorum 5 / 5">
+                <div class="testimonial-inner">
+                  <div class="stars mb-2" aria-label="5 yıldız">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                  </div>
+                  <p class="text-sm font-semibold text-gray-700 leading-relaxed mb-4">
+                    "Oğlum çok çekingen bir yapıya sahipti. Melike Hanım'ın küçük grup ortamı sayesinde diğer bebeklerle aynı aktiviteyi paylaşmaya başladı. Sosyal gelişimi için biçilmiş kaftan!"
+                  </p>
+                  <div class="flex items-center gap-3">
+                    <div class="avatar-circle bg-yellow-50">👨</div>
+                    <div>
+                      <p class="text-sm font-black text-gray-800">Hakan Y.</p>
+                      <p class="text-xs text-amber-500 font-bold">35 aylık erkek çocuğu babası</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- /slider-track -->
+          </div><!-- /viewport -->
+
+          <button id="t-next" class="slider-arrow" aria-label="Sonraki yorum">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-amber-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Dot navigation -->
+        <div class="dot-nav flex justify-center gap-2 mt-4" id="t-dots" aria-label="Yorum navigasyonu"></div>
+
+        <!-- Toplam veli sayısı sosyal kanıtı -->
+        <p class="text-center text-xs text-amber-500 font-bold mt-4">
+          🌟 100+ mutlu veli ailemizin parçası
+        </p>
+      </div>
+    </div>
+  </section>
 
   <!-- ===================== WHATSAPP BUTON ===================== -->
   <div class="max-w-lg mx-auto px-4 py-6 text-center">
@@ -391,6 +633,84 @@
     if (REFRESH_INTERVAL_MINUTES > 0) {
       setInterval(fetchData, REFRESH_INTERVAL_MINUTES * 60 * 1000);
     }
+
+    // ================================================================
+    // TESTİMONİALS SLIDER
+    // ================================================================
+    (function () {
+      var track    = document.getElementById('t-track');
+      var dotsNav  = document.getElementById('t-dots');
+      var btnPrev  = document.getElementById('t-prev');
+      var btnNext  = document.getElementById('t-next');
+      var cards    = track ? track.querySelectorAll('.testimonial-card') : [];
+      var total    = cards.length;
+      var current  = 0;
+      var autoTimer = null;
+      var AUTO_MS  = 4000;
+
+      if (!track || total === 0) return;
+
+      // Dot'ları oluştur
+      for (var i = 0; i < total; i++) {
+        var btn = document.createElement('button');
+        btn.setAttribute('aria-label', (i + 1) + '. yoruma git');
+        btn.dataset.idx = i;
+        dotsNav.appendChild(btn);
+      }
+      var dots = dotsNav.querySelectorAll('button');
+
+      function goTo(idx) {
+        current = (idx + total) % total;
+        track.style.transform = 'translateX(-' + (current * 100) + '%)';
+        dots.forEach(function (d, di) {
+          d.classList.toggle('active', di === current);
+        });
+      }
+
+      function startAuto() {
+        stopAuto();
+        autoTimer = setInterval(function () { goTo(current + 1); }, AUTO_MS);
+      }
+
+      function stopAuto() {
+        if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+      }
+
+      // Dot tıklamaları
+      dots.forEach(function (d) {
+        d.addEventListener('click', function () {
+          goTo(parseInt(this.dataset.idx, 10));
+          stopAuto(); startAuto();
+        });
+      });
+
+      // Ok butonları
+      btnPrev.addEventListener('click', function () { goTo(current - 1); stopAuto(); startAuto(); });
+      btnNext.addEventListener('click', function () { goTo(current + 1); stopAuto(); startAuto(); });
+
+      // Touch / swipe desteği
+      var touchStartX = 0;
+      var viewport = document.getElementById('t-viewport');
+      viewport.addEventListener('touchstart', function (e) {
+        touchStartX = e.changedTouches[0].clientX;
+      }, { passive: true });
+      viewport.addEventListener('touchend', function (e) {
+        var diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) {
+          goTo(diff > 0 ? current + 1 : current - 1);
+          stopAuto(); startAuto();
+        }
+      }, { passive: true });
+
+      // Visibility API – sekme arka plana geçince durdur
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) { stopAuto(); } else { startAuto(); }
+      });
+
+      // Başlat
+      goTo(0);
+      startAuto();
+    })();
   </script>
 
 </body>
