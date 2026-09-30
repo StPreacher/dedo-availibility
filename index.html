@@ -789,17 +789,15 @@
       var mainBtn   = document.getElementById('wa-button');
       if (!stickyBtn || !mainBtn) return;
 
-      var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            stickyBtn.classList.add('hidden-sticky');
-          } else {
-            stickyBtn.classList.remove('hidden-sticky');
-          }
-        });
-      }, { threshold: 0.5 });
+      function updateSticky() {
+        var rect = mainBtn.getBoundingClientRect();
+        var inView = rect.top < window.innerHeight && rect.bottom > 0;
+        stickyBtn.classList.toggle('hidden-sticky', inView);
+      }
 
-      observer.observe(mainBtn);
+      window.addEventListener('scroll', updateSticky, { passive: true });
+      // Kısa gecikmeyle ilk kontrol — kartlar yüklenince pozisyon netleşir
+      setTimeout(updateSticky, 800);
     })();
   </script>
 
